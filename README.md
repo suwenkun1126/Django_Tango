@@ -24,3 +24,14 @@
 - 将静态文件如(images、css、js)放在项目的static目录中
 - 在模板中应用静态文件
 - 在模板中加上`{% load staticfiles %}`,然后使用`{% static "<filename>" %}`标签引入静态文件
+
+# 3.模型和数据库
+
+## 设置数据库
+- 在Django的settings.py模块中的DATABASE设置中可以设置设置数据库的种类
+
+## 添加模型
+- 在相应应用下的models.py文件中定义模型
+- 更新应用下的admin.py文件,注册我们的模型
+- 生成迁移文件:`python manage.py makemigrations <app_name>`
+- 运行迁移,在数据库中创建模型所需的表和字段:`python manage.py migrate`

@@ -35,3 +35,26 @@
 - 更新应用下的admin.py文件,注册我们的模型
 - 生成迁移文件:`python manage.py makemigrations <app_name>`
 - 运行迁移,在数据库中创建模型所需的表和字段:`python manage.py migrate`
+
+# 4.模板继承和自定义模板标签的使用
+
+- 使用url模板标签可以避免硬编码URL
+- 借助模板标签减少代码量
+- 通过自定义模板标签减少视图中重复的代码
+- 当在应用中添加了`app_name='rango'`后记得在url模板标签中都要记得引用,否则会出现报错:`django.core.urlresolvers.NoReverseMatch: Reverse for 'add_category' with arguments '()' and keyword arguments '{}'  not found.`
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

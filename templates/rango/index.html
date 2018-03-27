@@ -1,46 +1,43 @@
-<!DOCTYPE html>
+{% extends 'rango/base.html' %}
 {% load staticfiles %}
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>Rango</title>
-</head>
-<body>
-    <h1>Rango says...</h1>
+
+{% block title_block %}
+    首页
+{% endblock %}
+{% block body_block %}
+    <h4>Rango says...</h4>
     <div>
         hey there partner <br>
     </div>
     <div>
-        <h1>Most Liked Categories</h1>
-        {% if category_list %}
+        <h4>热门分类</h4>
+        {% if categories %}
             <ul>
-                {% for category in category_list %}
+                {% for category in categories %}
                     <li>
                         <a href="{% url 'rango:show_category' category.slug %}">{{ category.name }}</a>
                     </li>
                 {% endfor %}
             </ul>
         {% else %}
-            <strong>There are no categories present</strong>
+            <strong>现阶段没有分类</strong>
         {% endif %}
     </div>
     <div>
-        <h1>Most Views Pages</h1>
-        {% if page_list %}
+        <h4>热门网页</h4>
+        {% if pages %}
             <ul>
-                {% for page in page_list %}
+                {% for page in pages %}
                     <li>
                         <a href="{{ page.url }}">{{ page.title }}</a>
                     </li>
                 {% endfor %}
             </ul>
         {% else %}
-            <strong>There are no pages present</strong>
+            <strong>现阶段没有网页</strong>
         {% endif %}
     </div>
     <div>
-        <a href="{% url "rango:add_category" %}">Add a New Category</a> <br>
         <img src="{% static 'images/rango.jpg' %}" alt="Picture of Rango">
     </div>
-</body>
-</html>
+{% endblock %}

@@ -1,11 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Rango</title>
-</head>
-<body>
-    <h1>Add a Category</h1>
+{% extends 'rango/base.html' %}
+{% load staticfiles %}
+
+{% block title_block %}
+    添加分类
+{% endblock %}
+{% block body_block %}
+    <h1>添加分类</h1>
     <div>
         <form method="post" action="{% url 'rango:add_category' %}">
             {% csrf_token %}
@@ -17,8 +17,6 @@
                 {{ field.help_text }}
                 {{ field }}
             {% endfor %}
-            <input type="submit" name="submit" value="Create Category">
+            <input type="submit" name="submit" value="添加分类">
         </form>
-    </div>
-</body>
-</html>
+{% endblock %}

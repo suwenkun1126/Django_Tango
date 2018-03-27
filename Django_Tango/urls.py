@@ -15,10 +15,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.conf.urls import url,include
+from rango import views
 from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
-    url('admin/', admin.site.urls),
-    url('^rango/', include('rango.urls')),
+    url(r'^admin/', admin.site.urls),
+    url(r'^rango/', include('rango.urls')),
 ]+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

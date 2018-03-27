@@ -4,10 +4,9 @@ from .forms import CategoryForm,PageForm
 
 def index(request):
     category_list=Category.objects.order_by('-likes')[:5]
-    page_list=Page.objects.order_by('views')[:5]
-    return render(request,'rango/index.html',context={'category_list':category_list,
-                                                      'page_list':page_list
-                                                      })
+    page_list=Page.objects.order_by('-views')[:5]
+    return render(request,'rango/index.html',context={'categories':category_list,
+                                                      'pages':page_list })
 
 def show_category(request,category_name_slug):
     context={}
@@ -30,7 +29,7 @@ def add_category(request):
             return index(request)
         else:
             print(form.errors)
-    return render(request,'rango/add_category.html',{'form':form})
+    return render(request,'rango/add_category.html',context={'form':form})
 
 def add_page(request,category_name_slug):
     try:
@@ -49,4 +48,4 @@ def add_page(request,category_name_slug):
                 return show_category(request,category_name_slug)
         else:
             print(form.errors)
-    return render(request,'rango/add_page.html',{'form':form,'category':category})
+    return render(request,'rango/add_page.html',context={'form':form,'category':category})

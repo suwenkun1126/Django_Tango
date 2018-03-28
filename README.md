@@ -43,6 +43,19 @@
 - 通过自定义模板标签减少视图中重复的代码
 - 当在应用中添加了`app_name='rango'`后记得在url模板标签中都要记得引用,否则会出现报错:`django.core.urlresolvers.NoReverseMatch: Reverse for 'add_category' with arguments '()' and keyword arguments '{}'  not found.`
 
+# 5.cookie和会话
+
+## 使用客户端cookie的步骤
+- 必须先检查想用的cookie是否存在,使用的方法是通过`request.COOKIES.has_key('<cookie_name>)`函数返回一个布尔值,指出名为`<cooike_name>`的cookie是否存在于客户端电脑中
+- 如果目标cookie存在,便可以读取其值:`request.COOKIES[]`,cookie的值始终为字符串类型，要做好类型转换的准备
+- 如果目标cookie不存在，或者想更新cookie，把想保存的值传给生成的响应。要调用函数`response.set_cookie('<cookie_name>',value)`,第一个参数为cookie的名称,第二个参数为要设定的值
+
+## 对于安全性要求高的,应使用基于会话的cookie
+- 首相,确保Django项目的`settings.py`模块中的`MIDDLEWARE_CLASSES`列表里有`django.contrib.sessions.middleware.SessionMiddleware`,如果没有要加上
+- 使用`SESSION_ENGINE`配置会话后端
+- 通过 `request.sessions.get()`检查cookie是否存在
+- 通过会话字典更新或者设定cookie:`request.session['<cookie_name>']`
+
 
 
 

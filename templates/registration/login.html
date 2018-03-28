@@ -1,0 +1,15 @@
+{% extends 'rango/base.html' %}
+{% load staticfiles %}
+
+{% block body_block %}
+    <h1>登录</h1>
+    <form method="post" action=".">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="登录">
+        <input type="hidden" name="next" value="{{ next }}">
+    </form>
+    <p>
+        未注册？<a href="{% url 'registration_register' %}">点击进行注册</a>
+    </p>
+{% endblock %}

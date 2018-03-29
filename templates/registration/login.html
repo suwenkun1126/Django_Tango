@@ -2,14 +2,20 @@
 {% load staticfiles %}
 
 {% block body_block %}
-    <h1>登录</h1>
-    <form method="post" action=".">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <input type="submit" value="登录">
-        <input type="hidden" name="next" value="{{ next }}">
-    </form>
-    <p>
-        未注册？<a href="{% url 'registration_register' %}">点击进行注册</a>
-    </p>
+    <link href="http://v4-alpha.getbootstrap.com/examples/signin//signin.css" rel="stylesheet">
+    <div class="container">
+        <h1 class="form-signin-heading text-center">登录</h1>
+        <hr>
+        <form class="form-signin" role="form" method="post" action=".">
+            {% csrf_token %}
+            <label for="inputUsername" class="sr-only">用户名</label>
+            <input type="text" name="username" id="id_username" class="form-control" placeholder="用户名" required autofocus>
+            <label for="inputPassword" class="sr-only">密码</label>
+            <input type="password" name="password" id="id_password" class="form-control" placeholder="密码" required>
+            <button class="btn btn-lg btn-primary btn-block" type="submit" value="登录">登录</button>
+        </form>
+        <p class="text-center">
+            还没有账号？<a href="{% url 'registration_register' %}">注册</a>
+        </p>
+    </div>
 {% endblock %}

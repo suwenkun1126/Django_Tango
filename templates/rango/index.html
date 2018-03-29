@@ -5,44 +5,47 @@
     首页
 {% endblock %}
 {% block body_block %}
-    <h1>Rango says...</h1>
-    <div>
+    <div class="jumbotron">
+        <h2 class="display-3">
         {% if user.is_authenticated %}
-            欢迎你 - {{ user.username }}
+            Rango Says ..On Earth
         {% else %}
-            欢迎你 - 陌生人
+            Rango Says ..On Mars
         {% endif %}
+        </h2>
     </div>
-    <p>访问人数：{{ visits }}</p>
-    <div>
-        <h2>热门分类</h2>
-        {% if categories %}
-            <ul>
-                {% for category in categories %}
-                    <li>
-                        <a href="{% url 'rango:show_category' category.slug %}">{{ category.name }}</a>
-                    </li>
-                {% endfor %}
-            </ul>
-        {% else %}
-            <strong>现阶段没有分类</strong>
-        {% endif %}
+    <hr>
+    <div class="row marking">
+        <div class="col-lg-6">
+            <h2>热门分类</h2>
+            {% if categories %}
+                <ul>
+                    {% for category in categories %}
+                        <li>
+                            <a href="{% url 'rango:show_category' category.slug %}">{{ category.name }}</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <strong>现阶段没有分类</strong>
+            {% endif %}
+        </div>
+        <div class="col-lg-6">
+            <h2>热门网页</h2>
+            {% if pages %}
+                <ul>
+                    {% for page in pages %}
+                        <li>
+                            <a href="{{ page.url }}">{{ page.title }}</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <strong>现阶段没有网页</strong>
+            {% endif %}
+        </div>
     </div>
-    <div>
-        <h2>热门网页</h2>
-        {% if pages %}
-            <ul>
-                {% for page in pages %}
-                    <li>
-                        <a href="{{ page.url }}">{{ page.title }}</a>
-                    </li>
-                {% endfor %}
-            </ul>
-        {% else %}
-            <strong>现阶段没有网页</strong>
-        {% endif %}
-    </div>
-    <div>
-        <img src="{% static 'images/rango.jpg' %}" alt="Picture of Rango">
-    </div>
+{#    <div>#}
+{#        <img src="{% static 'images/rango.jpg' %}" alt="Picture of Rango">#}
+{#    </div>#}
 {% endblock %}

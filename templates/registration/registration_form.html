@@ -1,11 +1,15 @@
 {% extends 'rango/base.html' %}
-{% load staticfiles %}
+{% load bootstrap_toolkit %}
+{% block title_block %}
+    注册
+{% endblock %}
 
 {% block body_block %}
-    <h1>注册</h1>
-    <form method="post" action=".">
+    <h1 class="form-signin-heading">注册</h1>
+    <form id="registration_form" method="post" action=".">
         {% csrf_token %}
-        {{ form.as_p }}
-        <input type="submit" value="注册">
+        {{ form|as_bootstrap }}
+        <br>
+        <button class="btn btn-primary" type="submit" name="submit">注册</button>
     </form>
 {% endblock %}

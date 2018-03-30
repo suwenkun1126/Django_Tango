@@ -7,6 +7,7 @@ from .models import Category,Page
 from .forms import CategoryForm,PageForm,UserForm,UserProfileForm
 from datetime import datetime
 from registration.backends.simple.views import RegistrationView
+from rango.webhose_search import run_query
 
 def index(request):
     request.session.set_test_cookie()
@@ -134,3 +135,11 @@ def visitor_cookie_handler(request):
 class MyRegistrationView(RegistrationView):
     def get_success_url(self,user):
         return '/rango/'
+
+def search(request):
+    result_list=[]
+    if request.method == 'POST':
+        query=request.POST['query'].strip()
+        if query:
+            result_list=run_query(query)
+    return render(request,'rango/search.html',context={'result_list':result_list})
